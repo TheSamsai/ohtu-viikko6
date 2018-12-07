@@ -39,6 +39,7 @@ public class Summa implements Komento {
             tuloste.setText("" + sovellus.tulos());
             
             nollaa.disableProperty().set(false);
+            undo.disableProperty().set(false);
         } catch (Exception e) {
             
         }
@@ -46,5 +47,11 @@ public class Summa implements Komento {
 
     @Override
     public void peru() {
+        sovellus.miinus(arvo);
+        
+        syote.setText("");
+        tuloste.setText("" + sovellus.tulos());
+        
+        undo.disableProperty().set(true);
     }
 }

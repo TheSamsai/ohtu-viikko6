@@ -38,11 +38,17 @@ public class Nollaa implements Komento {
         tuloste.setText("" + sovellus.tulos());
         
         nollaa.disableProperty().set(true);
+        undo.disableProperty().set(false);
     }
 
     @Override
     public void peru() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        sovellus.plus(arvo);
+        
+        syote.setText("");
+        tuloste.setText("" + sovellus.tulos());
+        
+        undo.disableProperty().set(true);
     }
     
 }

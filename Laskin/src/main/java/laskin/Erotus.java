@@ -39,6 +39,7 @@ public class Erotus implements Komento {
             tuloste.setText("" + sovellus.tulos());
             
             nollaa.disableProperty().set(false);
+            undo.disableProperty().set(false);
         } catch (Exception e) {
             
         }
@@ -46,6 +47,12 @@ public class Erotus implements Komento {
 
     @Override
     public void peru() {
+        sovellus.plus(arvo);
+        
+        syote.setText("");
+        tuloste.setText("" + sovellus.tulos());
+        
+        undo.disableProperty().set(true);
     }
     
 }
