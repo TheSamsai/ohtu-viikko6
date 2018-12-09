@@ -11,7 +11,10 @@ public class QueryBuilder {
     }
 
     public Matcher build() {
-        return this.matcher;
+        Matcher newMatcher = this.matcher;
+        this.matcher = new All();
+
+        return newMatcher;
     }
 
     public QueryBuilder playsIn(String team) {
@@ -32,6 +35,20 @@ public class QueryBuilder {
         this.matcher = new And(matcher,
                             new HasFewerThan(value, field)
                         );
+        return this;
+    }
+
+    public QueryBuilder not(Matcher matcher) {
+        this.matcher = new And(this.matcher,
+                            new Not(matcher)
+                        );
+
+        return this;
+    }
+
+    public QueryBuilder oneOf(Matcher... matchers) {
+        this.matcher = new Or(matchers);
+
         return this;
     }
 }
